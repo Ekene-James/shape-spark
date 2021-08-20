@@ -68,7 +68,21 @@
 
   <div id="cover-image">
   </div>
+ 
+  <img id="vitrified-flooring" src="2021-08-16-11-27-15/img/texture/vitrifiedFlooring.jpg" style="display: none">
+  <img id="vitrified-flooring-1" src="2021-08-16-11-27-15/img/texture/vitrifiedFlooring1.jpg" style="display: none">
 
+  <img id="italian-mable" src="2021-08-16-11-27-15/img/texture/italianMable.jpg" style="display: none">
+  <img id="aglo-mable" src="2021-08-16-11-27-15/img/texture/agloMable.jpg">
+  <img id="beige-mable" src="2021-08-16-11-27-15/img/texture/beigeMable.jpg" style="display: none">
+  <img id="wooden-flooring" src="2021-08-16-11-27-15/img/texture/woodenFlooring.jpg" style="display: none">
+
+  <img id="dark-grey" src="2021-08-16-11-27-15/img/texture/darkGrey.jpg" style="display: none">
+  <img id="olive-green" src="2021-08-16-11-27-15/img/texture/oliveGreen.jpg" style="display: none">
+  <img id="pinkish-beige" src="2021-08-16-11-27-15/img/texture/pinkishBeige.png" style="display: none">
+  <img id="fabric-wall" src="2021-08-16-11-27-15/img/texture/fabricWall.jpg" style="display: none">
+  <img id="light-blue" src="2021-08-16-11-27-15/img/texture/lightBlue.jpg" style="display: none">
+ 
   <!-- tabindex allows to give the canvas keyboard focus with a
          focus() function -->
   <canvas id="walk-canvas" tabindex="-1">
@@ -309,7 +323,7 @@
         </div>
       </div>
     </div>
-
+  
     <div id="mobile-help" class="help ui-panel"
          style="display: none">
       <img id="close-mobile-help-button"
@@ -394,10 +408,130 @@
   <div id="ext-meeting-camera-preview" style="display: none"></div>
   <script type="text/javascript">
     window.onload = function() {
+      var woodenFlooring = document.getElementById('wooden-flooring');
+      var italianMable = document.getElementById('italian-mable');
+      var agloMable = document.getElementById('aglo-mable');
+      var beigeMable = document.getElementById('beige-mable');
+      var vitrifiedFlooring1 = document.getElementById('vitrified-flooring-1');
+      var vitrifiedFlooring = document.getElementById('vitrified-flooring');
+
+      var darkGrey = document.getElementById('dark-grey');
+      var oliveGreen = document.getElementById('olive-green');
+      var pinkishBeige = document.getElementById('pinkish-beige');
+      var fabricWall = document.getElementById('fabric-wall');
+      var lightBlue = document.getElementById('light-blue');
+
       var config = new WALK.SceneLoadConfig();
       config.assetsUrl = '2021-08-16-11-27-15/';
       WALK.init(config);
+
+      var viewer=WALK.getViewer();
+      viewer.setAllMaterialsEditable();
+      const woodenFlooringView = viewer.createTextureFromHtmlImage(woodenFlooring);
+      const italianMableView = viewer.createTextureFromHtmlImage(italianMable);
+      const agloMableView = viewer.createTextureFromHtmlImage(agloMable);
+      const beigeMableView = viewer.createTextureFromHtmlImage(beigeMable);
+      const vitrifiedFlooring1View = viewer.createTextureFromHtmlImage(vitrifiedFlooring1);
+      const vitrifiedFlooringView = viewer.createTextureFromHtmlImage(vitrifiedFlooring);
+
+      const darkGreyView = viewer.createTextureFromHtmlImage(darkGrey);
+      const oliveGreenView = viewer.createTextureFromHtmlImage(oliveGreen);
+      const pinkishBeigeView = viewer.createTextureFromHtmlImage(pinkishBeige);
+      const fabricWallView = viewer.createTextureFromHtmlImage(fabricWall);
+      const lightBlueView = viewer.createTextureFromHtmlImage(lightBlue);
+    
+
+      window.addEventListener("message", receiveMsg, false);
+      
+      function receiveMsg(e) {
+ 
+
+
+        if (e.origin === "http://localhost:3000/apartment" || "https://jovial-jepsen-fe9dc5.netlify.app/apartment") {
+          if(e.data === 'Kitchen'){
+            viewer.switchToView('Kitchen');
+          }else if(e.data === 'Living Room'){
+            viewer.switchToView('Living Room');
+          }else if(e.data === 'Bedroom'){
+            viewer.switchToView('Masted Bedroom');
+  
+          }else if(e.data === 'Toilet'){
+            viewer.switchToView('Common Washroom');
+          }else if(e.data === `Kid's Bedroom`){
+            viewer.switchToView(`Bedroom`);
+          }else if(e.data === 'Balcony'){
+            //viewer.switchToView('Balcony');
+          }else if(e.data === 'Washroom'){
+            viewer.switchToView('M. Washroom');
+          
+          }else if(e.data === '3D mode'){
+            viewer.switchToView('Isometric View');
+          
+          }else if(e.data === 'Wooden Flooring'){
+            const material = viewer.findMaterial('CeramicTiles1');
+            material.baseColorTexture = woodenFlooringView;
+            viewer.requestFrame();
+          
+          }else if(e.data === 'Italian Mable'){
+            const material = viewer.findMaterial('CeramicTiles1');
+            material.baseColorTexture = italianMableView;
+            viewer.requestFrame();
+          
+          }else if(e.data === 'Vitrified Flooring'){
+            const material = viewer.findMaterial('CeramicTiles1');
+            material.baseColorTexture = vitrifiedFlooringView;
+            viewer.requestFrame();
+          
+          }else if(e.data === 'Vitrified Flooring1'){
+            const material = viewer.findMaterial('CeramicTiles1');
+            material.baseColorTexture = vitrifiedFlooring1View;
+            viewer.requestFrame();
+          
+          }else if(e.data === 'Beige Mable'){
+            const material = viewer.findMaterial('CeramicTiles1');
+            material.baseColorTexture = beigeMableView;
+            viewer.requestFrame();
+          
+          }else if(e.data === 'Aglo Mable'){
+            const material = viewer.findMaterial('CeramicTiles1');
+            material.baseColorTexture = agloMableView;
+            viewer.requestFrame();
+          
+          }else if(e.data === 'Dark Grey'){
+            const material = viewer.findMaterial('Interior Wall');
+            material.baseColorTexture = darkGreyView;
+            viewer.requestFrame();
+          
+          }else if(e.data === 'Olive Green'){
+            const material = viewer.findMaterial('Interior Wall');
+            material.baseColorTexture = oliveGreenView;
+            viewer.requestFrame();
+          
+          }else if(e.data === 'Pinkish Beige'){
+            const material = viewer.findMaterial('Interior Wall');
+            material.baseColorTexture = pinkishBeigeView;
+            viewer.requestFrame();
+          
+          }else if(e.data === 'Fabric Wall'){
+            const material = viewer.findMaterial('Interior Wall');
+            material.baseColorTexture = fabricWallView;
+            viewer.requestFrame();
+          
+          }else if(e.data === 'Light Blue'){
+            const material = viewer.findMaterial('Interior Wall');
+            material.baseColorTexture = lightBlueView;
+            viewer.requestFrame();
+          }
+         
+        }
+      }
+
+     
     }
+   
+  </script>
+  <script type="text/javascript">
+    
   </script>
   <script src="2021-08-16-11-27-15/webwalk/walk.min.js" type="text/javascript"></script>
 </body>
