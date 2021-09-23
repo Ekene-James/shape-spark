@@ -1,0 +1,43 @@
+.bg {
+    background: url('./breakfast.jpg') no-repeat center center/cover;
+    height: 100vh;
+    width: 100vw;
+}
+
+body {
+
+    overflow: hidden;
+}
+
+.skip {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+
+    height: 45px;
+    padding: 10px 25px;
+    border-radius: 10px;
+    border: 1px solid white;
+    margin-bottom: 3vh;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    color: white;
+    font-size: 1.2vw;
+    font-weight: 700;
+    position: absolute;
+    bottom: 0%;
+    right: 1%;
+    z-index: 2;
+
+}
+
+.skip:hover {
+    background: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+
+.icon {
+    margin-right: 5px
+}
