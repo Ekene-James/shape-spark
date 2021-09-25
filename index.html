@@ -479,7 +479,7 @@
     
       function rotatePointer() {
         var rotation = viewer.getCameraRotation();
-        console.log(rotation.yawDeg)
+        
         evt?.source?.postMessage(rotation.yawDeg,evt?.origin);
          
          
