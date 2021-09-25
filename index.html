@@ -469,7 +469,7 @@
         
       // console.log('ready to display')
        
-     // window.setInterval(rotatePointer, 50);
+      window.setInterval(rotatePointer, 50);
     });
     viewer.onSceneLoadComplete(function() {
       evt?.source?.postMessage('loadComplete',evt?.origin);
@@ -479,7 +479,8 @@
     
       function rotatePointer() {
         var rotation = viewer.getCameraRotation();
-       // evt?.source?.postMessage(rotation.yaw,evt?.origin);
+        console.log(rotation.yawDeg)
+        evt?.source?.postMessage(rotation.yawDeg,evt?.origin);
          
          
       }
