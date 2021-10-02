@@ -468,6 +468,12 @@
       viewer.onSceneReadyToDisplay(function() {
         
       // console.log('ready to display')
+   
+       
+      window.setInterval(rotatePointer, 50);
+    });
+    viewer.onSceneLoadComplete(function() {
+      evt?.source?.postMessage('loadComplete',evt?.origin);
       var woodenFlooringView = viewer.createTextureFromHtmlImage(woodenFlooring);
       var italianMableView = viewer.createTextureFromHtmlImage(italianMable);
       var agloMableView = viewer.createTextureFromHtmlImage(agloMable);
@@ -480,14 +486,8 @@
       var pinkishBeigeView = viewer.createTextureFromHtmlImage(pinkishBeige);
       var fabricWallView = viewer.createTextureFromHtmlImage(fabricWall);
       var lightBlueView = viewer.createTextureFromHtmlImage(lightBlue);
-       
-      window.setInterval(rotatePointer, 50);
-    });
-    viewer.onSceneLoadComplete(function() {
-      evt?.source?.postMessage('loadComplete',evt?.origin);
     });
       
-    
       function rotatePointer() {
         var rotation = viewer.getCameraRotation();
         
