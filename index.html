@@ -473,6 +473,7 @@
     });
     viewer.onSceneLoadComplete(function() {
       evt?.source?.postMessage('loadComplete',evt?.origin);
+      viewer.switchToView('Living Room');
  
     });
       
